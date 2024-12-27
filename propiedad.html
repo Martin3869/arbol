@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propiedad - Av. Néstor Kirchner 3297</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.3/leaflet.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.3/leaflet.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://via.placeholder.com/1920x1080.png?text=Real+Estate+Background'); /* Imagen representativa */
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+        .header {
+            background-color: rgba(0, 0, 0, 0.7);
+            text-align: center;
+            padding: 20px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        .container {
+            background-color: rgba(0, 0, 0, 0.8);
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 800px;
+        }
+        #map {
+            height: 400px;
+            width: 100%;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Propiedad en Alquiler - Av. Néstor Kirchner 3297</h1>
+    </div>
+    <div class="container">
+        <p><strong>Superficie total:</strong> 200.25 m²</p>
+        <p><strong>Superficie cubierta:</strong> 88.65 m²</p>
+        <ul>
+            <li>Baño: 3.25 m²</li>
+            <li>Sector 1: 22.40 m²</li>
+            <li>Sector 2: 30.00 m²</li>
+            <li>Sector 3: 33.00 m²</li>
+            <li><strong>Precio total superficie cubierta:</strong> 91,186 USD</li>
+        </ul>
+        <p><strong>Superficie descubierta:</strong> 111.60 m²</p>
+        <ul>
+            <li>Galería Oeste: 4.20 m²</li>
+            <li>Patio Central: 62.40 m²</li>
+            <li>Galería/Cochera: 45.00 m²</li>
+            <li><strong>Precio total superficie descubierta:</strong> 76,520 USD</li>
+        </ul>
+        <p><strong>Precio total de la propiedad:</strong> 167,706 USD</p>
+        <div id="map"></div>
+    </div>
+
+    <script>
+        // Inicialización del mapa
+        const map = L.map('map').setView([-26.834396083235287, -65.25048847541954], 15); // Coordenadas actualizadas
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+        }).addTo(map);
+        
+        L.marker([-26.834396083235287, -65.25048847541954]).addTo(map)
+            .bindPopup('Av. Néstor Kirchner 3297')
+            .openPopup();
+    </script>
+</body>
+</html>
+
+
+

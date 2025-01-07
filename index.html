@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Propiedad - Av. Néstor Kirchner 3297</title>
+    
+    <!-- Librerías externas -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.3/leaflet.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.3/leaflet.css" />
+
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -39,31 +42,11 @@
             flex-direction: column;
             gap: 20px;
         }
-        .property-details img {
-            border-radius: 10px;
-            max-width: 100%;
-            height: auto;
-        }
         #map {
             height: 400px;
             width: 100%;
             border-radius: 10px;
             margin-top: 20px;
-        }
-        .contact {
-            margin-top: 20px;
-            padding: 20px;
-            background-color: #003366;
-            color: white;
-            border-radius: 10px;
-            text-align: center;
-        }
-        .contact p {
-            margin: 5px 0;
-            font-size: 1.1em;
-        }
-        .contact strong {
-            font-size: 1.2em;
         }
         .section-title {
             font-size: 1.5em;
@@ -83,37 +66,84 @@
         .advantages ul li {
             margin-bottom: 10px;
         }
+        
+        /* Estilos del ícono de ayuda (botón flotante) */
+        #help-agent {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: #003366;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            z-index: 1000;
+        }
+        #help-agent img {
+            width: 30px;
+            height: 30px;
+        }
+
+        /* Estilos del chatbox */
+        #chatbox {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 300px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            display: none; /* Inicialmente oculto */
+            z-index: 1000;
+            padding: 10px;
+        }
+        #chatbox textarea {
+            width: 100%;
+            height: 50px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        #chatbox button {
+            width: 100%;
+            background-color: #003366;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+        }
+        #chatbox #answer {
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #333;
+        }
     </style>
 </head>
+
 <body>
     <div class="header">
         <h1>Propiedad en Alquiler - Av. Néstor Kirchner 3297</h1>
     </div>
+
     <div class="container">
         <div class="property-details">
             <p class="section-title">Detalles de la Propiedad</p>
-            
             <p><strong>Ubicación Estratégica:</strong> Esquina privilegiada sobre Avenida Néstor Kirchner, cerca del Hipermercado Libertad y con acceso a 8 líneas de transporte público.</p>
             <p><strong>Superficie total:</strong> 200 m²</p>
             <p><strong>Superficie cubierta:</strong> 88.65 m²</p>
-            <ul>
-                <li>Baño: 3.25 m²</li>
-                <li>Sector 1: 22.40 m²</li>
-                <li>Sector 2: 30.00 m²</li>
-                <li>Sector 3: 33.00 m²</li>
-                <li><strong>Precio total superficie cubierta:</strong> 91,186 USD</li>
-            </ul>
             <p><strong>Superficie descubierta:</strong> 111.60 m²</p>
-            <ul>
-                <li>Galería Oeste: 4.20 m²</li>
-                <li>Patio Central: 62.40 m²</li>
-                <li>Galería/Cochera: 45.00 m²</li>
-                <li><strong>Precio total superficie descubierta:</strong> 76,520 USD</li>
-            </ul>
             <p><strong>Precio total de la propiedad:</strong> 167,706 USD</p>
+
             <p class="section-title">Mapa de la Ubicación</p>
             <div id="map"></div>
         </div>
+
         <div class="advantages">
             <p class="section-title">Ventajas de la Ubicación</p>
             <ul>
@@ -124,31 +154,132 @@
                 <li>Potencial comercial: Ideal para actividades comerciales y oficinas por su ubicación estratégica.</li>
             </ul>
         </div>
-        <div class="contact">
-            <p><strong>Contacto del Administrador:</strong></p>
-            <p>Daniel Martín Contreras</p>
-            <p>Teléfono: 381-3012805</p>
-            <p>Email: martin3869@hotmail.com</p>
-        </div>
     </div>
 
-    <script>
-        // Inicialización del mapa con capa satelital
-        const map = L.map('map').setView([-26.83457131539304, -65.25046977316624], 15); // Coordenadas actualizadas
-        L.tileLayer('https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
-            subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
-            maxZoom: 20,
-        }).addTo(map);
-        
-        L.marker([-26.83457131539304, -65.25046977316624]).addTo(map)
-            .bindPopup('Av. Néstor Kirchner 3297')
-            .openPopup();
-    </script>    <div class="container">
+    <!-- Ícono de ayuda (botón flotante) -->
+    <div id="help-agent">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/help.png" alt="Ayuda">
+    </div>
+
+    <!-- Caja de chat (solo UNA) -->
+    <div id="chatbox">
+        <textarea id="question" placeholder="Escribe tu pregunta aquí..."></textarea>
+        <button id="ask-btn">Enviar</button>
+        <div id="answer"></div>
+    </div>
+
+    <div class="container">
         <p class="section-title">Resumen del Contrato</p>
         <iframe src="Resumen de Contrato 2025 Av N Kirchner 3297.html" style="width:100%; height:500px; border:none;"></iframe>
     </div>
+
+    <footer style="background-color: #003366; color: white; text-align: center; padding: 10px; margin-top: 20px;">
+        <p><strong>Contacto del Administrador:</strong></p>
+        <p>Daniel Martín Contreras</p>
+        <p><a href="mailto:martin3869@hotmail.com" style="color: white;">martin3869@hotmail.com</a></p>
+        <p><a href="https://wa.me/3813012805" target="_blank" style="color: white;">WhatsApp: 381-3012805</a></p>
+    </footer>
+
+    <!-- Script principal al final para que el DOM ya exista -->
+    <script>
+        /***********************************************************
+         * 1. DEFINIMOS LAS PREGUNTAS Y RESPUESTAS EN UN OBJETO
+         *    (SIN ARCHIVO EXTERNO).
+         ***********************************************************/
+        const respuestasObj = {
+            "ubicacion": "El inmueble se encuentra sobre Avenida Néstor Kirchner 3297, esquina privilegiada con alto flujo vehicular y peatonal.",
+            "superficie total": "La superficie total del terreno es de 200 m² (10 m de frente x 20 m de largo).",
+            "superficie cubierta": "La superficie cubierta es de 88,65 m² distribuidos en varios sectores y un baño.",
+            "superficie descubierta": "La superficie descubierta es de 111,60 m², incluyendo una galería, un patio central y una cochera.",
+            "precio": "El precio total de la propiedad es 167,706 USD, con ajustes según IPC en caso de alquiler.",
+            "contrato": "El contrato de locación tiene una duración de 36 meses a partir del 01/01/2025.",
+            "partes": "Locadora: Elba del Valle Monteiro. Locataria: Andrea Viviana Schammas de Gill. Garante: Jorge Eduardo Schammas.",
+            "mora": "La falta de pago en la fecha estipulada incurre en mora automática, con intereses según tasa activa del Banco Nación o BCRA.",
+            "incumplimiento": "Dos meses de pago atrasados o violar cláusulas permite a la Locadora rescindir el contrato y exigir desalojo, tras 15 días para subsanar.",
+            "cartel": "Existe un cartel publicitario en el jardín delantero de uso exclusivo para la locataria con fines comerciales propios.",
+            "seguro": "La LOCATARIA debe contratar un seguro obligatorio (incendios y daños) por un mínimo de $33.000.000 y mantenerlo vigente.",
+            "rescision": "La LOCATARIA puede rescindir el contrato tras 6 meses, avisando con 60 días de antelación, pagando una indemnización según el año del contrato.",
+            "otros": "Lo siento, no encontré información sobre eso."
+        };
+
+        /***********************************************************
+         * 2. INICIALIZACIÓN DEL MAPA LEAFLET
+         ***********************************************************/
+        const map = L.map('map').setView([-26.83457131539304, -65.25046977316624], 15);
+
+        L.tileLayer('https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+            subdomains: ['mt0','mt1','mt2','mt3'],
+            maxZoom: 20,
+        }).addTo(map);
+
+        L.marker([-26.83457131539304, -65.25046977316624]).addTo(map)
+            .bindPopup('Av. Néstor Kirchner 3297')
+            .openPopup();
+
+        /***********************************************************
+         * 3. FUNCIONALIDAD DEL BOTÓN DE AYUDA (MOSTRAR/OCULTAR CHAT)
+         ***********************************************************/
+        const helpAgent = document.getElementById('help-agent');
+        const chatbox = document.getElementById('chatbox');
+        const askBtn = document.getElementById('ask-btn');
+        const answerDiv = document.getElementById('answer');
+
+        helpAgent.addEventListener('click', () => {
+            if (chatbox.style.display === 'none' || chatbox.style.display === '') {
+                chatbox.style.display = 'block';
+            } else {
+                chatbox.style.display = 'none';
+            }
+        });
+
+        /***********************************************************
+         * 4. LÓGICA DE RESPUESTA A PREGUNTAS
+         ***********************************************************/
+        askBtn.addEventListener('click', () => {
+            const question = document.getElementById('question').value.toLowerCase().trim();
+
+            // Empezamos con la respuesta "otros" por defecto.
+            let respuestaEncontrada = respuestasObj.otros;
+
+            // Recorremos el objeto para ver si la pregunta incluye
+            // alguna de las claves (ubicacion, precio, etc.)
+            for (let clave in respuestasObj) {
+                if (question.includes(clave)) {
+                    respuestaEncontrada = respuestasObj[clave];
+                    break; // Salimos del bucle si encontramos la clave
+                }
+            }
+
+            // Mostramos la respuesta en el div "answer"
+            answerDiv.textContent = respuestaEncontrada;
+        });
+    </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -72,7 +72,7 @@
             margin-bottom: 10px;
         }
         
-        /* Estilos del ícono de ayuda (botón flotante) */
+        /* Ícono flotante de ayuda (COMENTADO porque ya no se va a usar el chat libre)
         #help-agent {
             position: fixed;
             bottom: 20px;
@@ -91,9 +91,9 @@
         #help-agent img {
             width: 30px;
             height: 30px;
-        }
+        } */
 
-        /* Estilos del chatbox */
+        /* Caja de chat flotante (COMENTADA pues ya no se usa)
         #chatbox {
             position: fixed;
             bottom: 80px;
@@ -103,7 +103,7 @@
             border: 1px solid #ccc;
             border-radius: 10px;
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-            display: none; /* Inicialmente oculto */
+            display: none; 
             z-index: 1000;
             padding: 10px;
         }
@@ -127,7 +127,7 @@
             margin-top: 10px;
             font-size: 0.9em;
             color: #333;
-        }
+        } */
 
         /* Estilos para el Menú de Ayuda con Preguntas Predefinidas */
         .help-menu {
@@ -175,19 +175,60 @@
             margin-bottom: 10px;
             color: #333;
         }
+
+        /* NUEVA SECCIÓN: Listado de palabras clave resaltadas */
+        .keywords-container {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #EAF4FF; 
+            border-radius: 10px;
+        }
+        .keywords-container h3 {
+            margin-top: 0;
+            color: #003366;
+        }
+        /* Cada palabra clave */
+        .keyword-item {
+            display: inline-block;
+            margin: 5px;
+            padding: 3px 6px;
+            background-color: #DCE6F7; /* un suave sombreado */
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .keyword-item:hover {
+            background-color: #B3C9F0; /* un poquito más oscuro al pasar el mouse */
+        }
+
+        /* Recuadro azul para Contacto */
+        .contact-box {
+            background-color: #cce6ff;
+            border-radius: 10px;
+            margin: 20px auto;
+            padding: 20px;
+            max-width: 900px;
+        }
+        .contact-box p {
+            margin: 6px 0;
+        }
+        .contact-box a {
+            color: #003366;
+            text-decoration: none;
+        }
     </style>
 </head>
 
 <body>
     <div class="header">
-        <h1>Propiedad en Alquiler - Av. Néstor Kirchner 3297</h1>
+        <h1>Propiedad en Alquiler - Avenida Néstor Kirchner 3297 -SM de Tucumán</h1>
     </div>
 
     <div class="container">
         <div class="property-details">
             <p class="section-title">Detalles de la Propiedad</p>
-            <p><strong>Ubicación Estratégica:</strong> Esquina privilegiada sobre Avenida Néstor Kirchner, cerca del Hipermercado Libertad y con acceso a 8 líneas de transporte público.</p>
-            <p><strong>Superficie total:</strong> 200 m²</p>
+            <p><strong>Ubicación Estratégica:</strong> Esquina privilegiada sobre Avenida Néstor Kirchner, a 20 mts del Hipermercado Libertad y con acceso a 8 líneas de transporte público.</p>
+            <p><strong>Superficie total:</strong> 200,25 m²</p>
             <p><strong>Superficie cubierta:</strong> 88.65 m²</p>
             <p><strong>Superficie descubierta:</strong> 111.60 m²</p>
             <p><strong>Precio total de la propiedad:</strong> 167,706 USD</p>
@@ -200,7 +241,7 @@
             <p class="section-title">Ventajas de la Ubicación</p>
             <ul>
                 <li>Conectividad excepcional: Más de 8 líneas de transporte público transitan la avenida cada 30 minutos.</li>
-                <li>Entorno comercial dinámico: Proximidad al Hipermercado Libertad y otros centros de consumo.</li>
+                <li>Entorno comercial dinámico: A 20 mts del Hipermercado Libertad y otros centros de consumo.</li>
                 <li>Alta visibilidad: Flujo constante de vehículos y peatones garantiza exposición.</li>
                 <li>Accesibilidad: Ubicada en una arteria principal de San Miguel de Tucumán.</li>
                 <li>Potencial comercial: Ideal para actividades comerciales y oficinas por su ubicación estratégica.</li>
@@ -212,7 +253,7 @@
             <p class="section-title">Menú de Ayuda</p>
             <label for="preguntasSelect">Selecciona una pregunta:</label>
             <select id="preguntasSelect">
-                <option value="">-- Selecciona una pregunta --</option>
+                <option value="">-- Selecciona una pregunta --</option>                
                 <option value="ubicacion">¿Cuál es la ubicación?</option>
                 <option value="inmueble">¿Cómo es el inmueble?</option>
                 <option value="superficie total">¿Cuál es la superficie total?</option>
@@ -242,6 +283,7 @@
                 <option value="uso local">¿Qué actividad comercial se puede hacer?</option>
                 <option value="riesgos">¿Qué medidas de seguridad se requieren?</option>
                 <option value="domicilios">¿Cuáles son los domicilios de las partes?</option>
+                <!-- etc. (resto de las options) -->
             </select>
 
             <button id="askSelectBtn">Enviar</button>
@@ -249,29 +291,43 @@
         </div>
     </div>
 
-    <!-- Ícono de ayuda (botón flotante) -->
+    <!-- Ícono de ayuda (botón flotante) (COMENTADO)
     <div id="help-agent">
         <img src="https://img.icons8.com/ios-filled/50/ffffff/help.png" alt="Ayuda">
     </div>
+    -->
 
-    <!-- Caja de chat (solo UNA) -->
+    <!-- Caja de chat (solo UNA) (COMENTADO)
     <div id="chatbox">
         <textarea id="question" placeholder="Escribe tu pregunta aquí..."></textarea>
         <button id="ask-btn">Enviar</button>
         <div id="answer"></div>
     </div>
+    -->
 
     <div class="container">
         <p class="section-title">Resumen del Contrato</p>
         <iframe src="Resumen de Contrato 2025 Av N Kirchner 3297.html" style="width:100%; height:500px; border:none;"></iframe>
     </div>
 
-    <footer style="background-color: #003366; color: white; text-align: center; padding: 10px; margin-top: 20px;">
-        <p><strong>Contacto del Administrador:</strong></p>
+    <!-- NUEVA SECCIÓN: Palabras clave sombreadas -->
+    <div class="container">
+        <div class="keywords-container">
+            <h3>Palabras Clave Disponibles (haz clic para ver respuesta):</h3>
+            <div id="keywordList"></div>
+            <div style="margin-top: 15px; min-height: 50px; border: 1px solid #ccc; border-radius: 5px; padding: 10px;" id="answersAreaKeywords">
+                <!-- Respuestas al hacer clic en cada keyword -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Nuevo recuadro azul para Contacto del Administrador, al final -->
+    <div class="contact-box">
+        <p class="section-title">Contacto del Administrador:</p>
         <p>Daniel Martín Contreras</p>
-        <p><a href="mailto:martin3869@hotmail.com" style="color: white;">martin3869@hotmail.com</a></p>
-        <p><a href="https://wa.me/3813012805" target="_blank" style="color: white;">WhatsApp: 381-3012805</a></p>
-    </footer>
+        <p><a href="mailto:martin3869@hotmail.com">martin3869@hotmail.com</a></p>
+        <p><a href="https://wa.me/3813012805" target="_blank">WhatsApp: 381-3012805</a></p>
+    </div>
 
     <!-- Script principal al final para que el DOM ya exista -->
     <script>
@@ -312,22 +368,25 @@
         };
 
         /***********************************************************
-         * 2. INICIALIZACIÓN DEL MAPA LEAFLET
+         * 2. INICIALIZACIÓN DEL MAPA LEAFLET (con OpenStreetMap)
          ***********************************************************/
         const map = L.map('map').setView([-26.83457131539304, -65.25046977316624], 15);
 
-        L.tileLayer('https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
-            subdomains: ['mt0','mt1','mt2','mt3'],
-            maxZoom: 20,
+        // Usamos OpenStreetMap en vez de Google
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19
         }).addTo(map);
 
+        // Agregamos un marcador
         L.marker([-26.83457131539304, -65.25046977316624]).addTo(map)
             .bindPopup('Av. Néstor Kirchner 3297')
             .openPopup();
 
+
         /***********************************************************
-         * 3. FUNCIONALIDAD DEL BOTÓN DE AYUDA (MOSTRAR/OCULTAR CHAT)
+         * 3. MOSTRAR/OCULTAR EL CHAT FLOTANTE (COMENTADO)
          ***********************************************************/
+        /*
         const helpAgent = document.getElementById('help-agent');
         const chatbox = document.getElementById('chatbox');
         const askBtn = document.getElementById('ask-btn');
@@ -340,55 +399,73 @@
                 chatbox.style.display = 'none';
             }
         });
+        */
 
         /***********************************************************
-         * 4. LÓGICA DE RESPUESTA A PREGUNTAS (CHAT LIBRE)
+         * 4. LÓGICA DE RESPUESTA A PREGUNTAS (CHAT ESCRITO) (COMENTADO)
          ***********************************************************/
+        /*
         askBtn.addEventListener('click', () => {
             const question = document.getElementById('question').value.toLowerCase().trim();
+            let respuestaEncontrada = respuestasObj.otros; // por defecto
 
-            // Respuesta "otros" por defecto
-            let respuestaEncontrada = respuestasObj.otros;
-
-            // Buscamos si el texto incluye alguna clave
             for (let clave in respuestasObj) {
                 if (question.includes(clave)) {
                     respuestaEncontrada = respuestasObj[clave];
                     break;
                 }
             }
-
             answerDiv.textContent = respuestaEncontrada;
         });
+        */
 
         /***********************************************************
-         * 5. MENÚ DE AYUDA CON PREGUNTAS PREDEFINIDAS
+         * 5. MENÚ DE AYUDA (PREGUNTAS PREDEFINIDAS)
          ***********************************************************/
         const preguntasSelect = document.getElementById('preguntasSelect');
         const askSelectBtn = document.getElementById('askSelectBtn');
         const answersArea = document.getElementById('answersArea');
 
         askSelectBtn.addEventListener('click', () => {
-            // Obtenemos la clave seleccionada del <select>
             const claveSeleccionada = preguntasSelect.value;
             if (!claveSeleccionada) {
                 alert("Por favor, selecciona una pregunta del menú.");
                 return;
             }
-
-            // Buscamos la respuesta en el objeto
             const respuesta = respuestasObj[claveSeleccionada];
-
-            // Mostramos la pregunta y la respuesta
             const preguntaTexto = preguntasSelect.options[preguntasSelect.selectedIndex].text;
+
             answersArea.innerHTML += `
                 <div class="question">Pregunta: ${preguntaTexto}</div>
                 <div class="answer">Respuesta: ${respuesta}</div>
             `;
         });
+
+        /***********************************************************
+         * 6. LISTADO DE PALABRAS CLAVE “SOMBREADAS”
+         ***********************************************************/
+        const keywordList = document.getElementById('keywordList');
+        for (let clave in respuestasObj) {
+            if (clave === 'otros') continue; 
+            const span = document.createElement('span');
+            span.classList.add('keyword-item');
+            span.textContent = clave;
+            span.title = "Haz clic para ver respuesta"; // hint
+            // Al hacer clic, mostramos la respuesta en answersAreaKeywords
+            span.addEventListener('click', () => {
+                const respuesta = respuestasObj[clave];
+                const answersAreaK = document.getElementById('answersAreaKeywords');
+                answersAreaK.innerHTML += `
+                    <div class="question">Pregunta: ${clave}</div>
+                    <div class="answer">Respuesta: ${respuesta}</div>
+                `;
+            });
+            keywordList.appendChild(span);
+        }
     </script>
 </body>
 </html>
+
 
 
 
